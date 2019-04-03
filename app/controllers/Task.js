@@ -1,4 +1,4 @@
-const { createTask, getAllTask, getTaskByName, deleteTaskByName, getTasksActive } = require("../actions");
+const { createTask, getAllTask, getTaskByName, deleteTaskByName, getTasksActive, getTasksCompleted, getTasksInompleted } = require("../actions");
 
 const newTask = (req, res) => {
 	createTask(req.body).then(
@@ -41,10 +41,28 @@ const activeTasks = async (req, res) => {
     });
 };
 
+const completedTasks = async (req, res) => {
+  getTasksCompleted().then((tasks) => {
+      res.status(200).json(tasks);
+    }).catch((e) => {
+      res.status(400).json(e);
+    });
+};
+
+const incompletedTasks = async (req, res) => {
+  getTasksInompleted().then((tasks) => {
+      res.status(200).json(tasks);
+    }).catch((e) => {
+      res.status(400).json(e);
+    });
+};
+
 module.exports = { 
   newTask,
   getTasks,
   updateTask,
   deleteTask,
-  activeTasks
+  activeTasks,
+  completedTasks,
+  incompletedTasks
 };

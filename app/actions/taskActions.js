@@ -22,10 +22,20 @@ const getTasksActive = () => {
   return Task.find({ is_active: true });
 }
 
+const getTasksCompleted = () => {
+  return Task.find({ completed: true, is_active: true });
+}
+
+const getTasksInompleted = () => {
+  return Task.find({ completed: false, is_active: true });
+}
+
 module.exports = { 
   createTask,
   getAllTask,
   getTaskByName,
   deleteTaskByName,
-  getTasksActive
+  getTasksActive,
+  getTasksCompleted,
+  getTasksInompleted
 };
