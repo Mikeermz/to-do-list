@@ -8,8 +8,13 @@ const getAllTask = () => {
 	return Task.find({});
 };
 
+const getTaskByName = (name) => {
+  const query = {name }
+	return Task.findOneAndUpdate(query, {$set:{completed:true}}, { new: true } );
+};
 
 module.exports = { 
   createTask,
-  getAllTask
+  getAllTask,
+  getTaskByName
 };
