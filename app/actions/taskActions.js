@@ -18,9 +18,14 @@ const deleteTaskByName = (name) => {
   return Task.findOneAndUpdate(query, {$set:{is_active:false}}, { new: true } );
 }
 
+const getTasksActive = () => {
+  return Task.find({ is_active: true });
+}
+
 module.exports = { 
   createTask,
   getAllTask,
   getTaskByName,
-  deleteTaskByName
+  deleteTaskByName,
+  getTasksActive
 };
